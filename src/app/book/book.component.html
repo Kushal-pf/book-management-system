@@ -1,0 +1,63 @@
+<div>
+    <h5 class="text-red-600 text-xl bg-gray-200 text-center ">Register Book Here</h5>
+
+ <div class="flex flex-col md:flex-row gap-2 m-4">
+    <input class="border-gray-400 rounded-md  border-2 px-2" type="text" placeholder="Enter Book Name" [(ngModel)]="bookName">
+    <input class="border-gray-400 rounded-md  border-2 px-2"type="text" placeholder="Enter Author Name" [(ngModel)]="authorName">
+    <input class="border-gray-400 rounded-md  border-2 px-2"type="text" placeholder="Enter Publisher Name" [(ngModel)]="publisherName">
+    <input class="border-gray-400 rounded-md  border-2 px-2"type="number" placeholder="Enter Price" [(ngModel)]="price">
+    <button class="px-4 p-2 bg-gray-400 text-white rounded-xl"(click)="addBook()">Add Book</button>
+</div>
+
+<div *ngIf="books.length === 0" class="m-4 p-4 text-center text-gray-700">
+    No Book is there.Please add some Books.
+</div>
+<div *ngIf="books.length > 0" class="m-2 relative overflow-x-auto shadow-md sm:rounded-lg">
+  
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                   Book Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Author
+                </th>
+                <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                    Publisher
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Price
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let book of books; index as i"
+             class="border-b border-gray-200 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                    {{book.title}}
+                </th>
+                <td class="px-6 py-4">
+                    {{book.author}}
+                </td>
+                <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                    {{book.publisher}}
+                </td>
+                <td class="px-6 py-4">
+                    ${{book.price}}
+                </td>
+                <td>
+                    <button class="px-4 bg-red-400 text-white rounded-xl" (click)="deleteBook(i)">Delete</button>
+                </td>
+
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
+
+
+</div>
